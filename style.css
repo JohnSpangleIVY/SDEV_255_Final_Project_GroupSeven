@@ -1,0 +1,74 @@
+:root {
+   --space-half: 0.5rem;
+   --space-1: 1rem;
+   --space-1-5: 1.5rem;
+   --space-2: 2rem;
+   --space-3: 3rem;
+   --space-4: 4rem;
+   --space-5: 5rem;
+   --text-color-white: #fff;
+
+}
+.componentHeader{
+   border: 2px solid #000;
+   padding: 1rem;
+   margin: 2rem 0rem;
+}
+html, body {
+   background-color: #888;
+   padding: 0;
+   margin: 0;
+}
+* {
+   font-family: sans-serif;
+   color: var(--text-color-white);
+}
+.links {
+   display: flex;
+}
+h2 {
+   pointer-events: none;
+}
+.links .link a {
+   text-decoration: none;
+}
+.links .link {
+   display: flex;
+   align-items: center;
+   padding: 0 var(--space-1-5);
+   transition: all 0.25s;
+   cursor: pointer;
+}
+.links .link:hover {
+   background-color: #333;
+}
+.wrapper {
+   height: 100rem;
+}
+.app {
+   position: fixed;
+   top: 0;
+   width: 100%;
+   opacity: 0;
+   height: 4rem;
+   display: flex;
+   align-items: center;
+   justify-content: space-around;
+   background-color: #000;
+   transition: all 0.5s;
+}
+.app.show{
+   opacity: 1;
+}
+.app .left {
+   padding-right: var(--space-5);
+}
+.app .right {
+   padding-left: var(--space-5);
+   height: 100%;
+}
+
+.app .right .links {
+   height: 100%;
+   width: 100%;
+}
