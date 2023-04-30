@@ -1,50 +1,47 @@
-// Server-side code for handling links and routing
+// Server-side code
 
 // Required modules for the server
-const http = require("http");
-const fs = require("fs");
+const express = require("express"); // necessary web framework
+// const fs = require("fs"); //   may not be needed anymore...? the tutorial videos suggest not
+// const http = require("http"); //   may not be needed anymore...? the tutorial videos suggest not
+const mongoose = require("mongoose"); // used for database-related things
+const morgan = require("morgan"); // HTTP request logger middleware
 
-// Server creation
-const server = http.createServer((req, res) => {
-  // monitor what is going on with each request
-  console.log(req.url, req.method);
 
-  // Page handling
-  let path = "./views/";
-  switch (req.url) {
-    case '/':
-      path += "index.html";
-      res.statusCode = 200;
-      break;
-    case '/about':
-      path += "about.html";
-      res.statusCode = 200;
-      break;
-    case '/login':
-      path += "login.html";
-      res.statusCode = 200;
-      break;
-    default:
-      path += 'error404.html'
-      res.statusCode = 404;
-      break;
-  }
+// Express app
+const app = express();
 
-  // Send an HTML file
-  fs.readFile (path, (err, data) => {
-    if (err) {
-      console.log(err);
-      res.end();
-    } else {
-      res.end(data);
-    }
-  })
+
+// Connect to MongoDB
+const dbURI = 'mongodb+srv://testuser123:jt3QhYVIheU2WYLk@node-tuts.kjiohpd.mongodb.net/groupseven';  // need to see how we can handle multiple users; might be covered in next module?
+mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology:true})
+  .then ((result) => app.listen(3000)) // 3000 can be changed to fit ones' needs
+  .catch ((err) => console.log(err)); // log errors related to connecting
+
+
+// Register the view engine (so we can use EJS files instead of HTML)
+app.set("view engine", "ejs");
+
+
+// Use middleware to access our CSS and JS, which are static files
+app.use(express.static('public'));
+app.use(express.urlencoded({extended:true})); // extended must be true!
+app.use(morgan("dev"));
+
+
+//
+// Routes - work in progress
+// Default to index.ejs aka Welcome page
+app.get('/', (req, res) => {
+  res.redirect('/index');
 });
 
-// Listen for port 3000 on localhost
-// Port 3000 will be used for testing
-// Can be changed later if necessary
-server.listen(3000, 'localhost', () => {
-  // listening message
-  console.log("Listening for requests on Port 3000");
+// Login page
+app.get('/login', (req, res) => {
+  res.render('login');
+});
+
+// 404 page - if 404, set status to 404
+app.get('/error404', (req, res) => {
+  res.status(404).render('error404');
 });
