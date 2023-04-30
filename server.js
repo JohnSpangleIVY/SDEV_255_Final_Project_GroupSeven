@@ -1,11 +1,9 @@
 // Server-side code
 
 // Required modules for the server
-const express = require("express"); // necessary web framework
-// const fs = require("fs"); //   may not be needed anymore...? the tutorial videos suggest not
-// const http = require("http"); //   may not be needed anymore...? the tutorial videos suggest not
-const mongoose = require("mongoose"); // used for database-related things
-const morgan = require("morgan"); // HTTP request logger middleware
+const express = require('express'); // necessary web framework
+const morgan = require('morgan'); // HTTP request logger middleware
+const mongoose = require('mongoose'); // used for database-related things
 
 
 // Express app
@@ -20,28 +18,28 @@ mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology:true})
 
 
 // Register the view engine (so we can use EJS files instead of HTML)
-app.set("view engine", "ejs");
+app.set('view engine', 'ejs');
 
 
 // Use middleware to access our CSS and JS, which are static files
 app.use(express.static('public'));
 app.use(express.urlencoded({extended:true})); // extended must be true!
-app.use(morgan("dev"));
+app.use(morgan('dev'));
 
 
 //
 // Routes - work in progress
-// Default to index.ejs aka Welcome page
+// Welcome page
 app.get('/', (req, res) => {
-  res.redirect('/index');
+  res.render('index', {title: 'Welcome'});
 });
 
 // Login page
 app.get('/login', (req, res) => {
-  res.render('login');
+  res.render('login', {title: 'Login'});
 });
 
 // 404 page - if 404, set status to 404
 app.get('/error404', (req, res) => {
-  res.status(404).render('error404');
+  res.status(404).render('error404', {title: '404'});
 });
