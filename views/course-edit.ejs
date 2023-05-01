@@ -11,10 +11,38 @@
   <h1>Edit "<%= course.coursename %>"</h1>
   <p>Under construction... please mind our dust!</p>
 
+  <h2>Current Course Information</h2>
+  <p><b>Course Name: </b><%= course.coursename %>"</p>
+  <p><b>Description: </b><%= course.description %></p>
+  <p><b>Subject Area: </b><%= course.subjectarea %></p>
+  <p><b>Credit Hours: </b><%= course.credithours %></p>
+
+  <h2>Your Edit:</h2>
+  <p>Coming soon</p>
+
+  <button class="delete" data-doc="<%= course._id %>">Delete "<%= course.coursename %>"</button>
+
   <!-- Nav -->
   <%- include('./partials/nav.ejs') %>
 
   <script src="js.js"></script>
+  <script>
+    // Client-side JS for Handling DELETE of Individual/Selected Course
+    const deleteButton = document.querySelector('button.delete')'
+
+    deleteButton.addEventListener('click', (e) => {
+      const endpoint = '/courses/${deleteButton.dataset.doc}';
+
+      fetch(endpoint, {
+        method: 'DELETE'
+      })
+      .then((response) => response.json())
+      .then((data) => window.location.href = data.redirect)
+      .catch((err) => {
+        console.log(err);
+      });
+    })
+  </script>
 </body>
 
 </html>

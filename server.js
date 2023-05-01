@@ -70,6 +70,18 @@ app.get('/courses/:id', (req, res) => {
     });
 });
 
+// Delete an Individual/Selected Course :: DELETE  -  route
+app.delete('/courses/:id', (req, res) => {
+  const id = req.params.id;
+  Courses.findByIdAndDelete(id)
+    .then(result => {
+      res.json({redirect: '/courses'})
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
 // Edit or Delete a Course page
 app.get('/course-edit', (req, res) => {
   res.render('course-edit', {title: 'Edit a Course'});
