@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head -->
+<%- include('./partials/head.ejs') %>
+
+<body>
+  <br>
+  <br>
+  <br>
+  <h1>Create a Course</h1>
+  <p>Under construction... please mind our dust!</p>
+
+  <div class="createcourse form">
+    <form action="/courses" method="POST">
+      <label for="coursename">Course Name: </label>
+      <input type="text" id="coursename" name="coursename" required>
+      <label for="description">Description: </label>
+      <textarea id="description" name="description" required></textarea>
+      <label for="subjectarea">Subject Area: </label>
+      <input type="text" id="subjectarea" name="subjectarea" required>
+      <label for="credithours">Credit Hours: </label>
+      <input type="number" id="credithours" name="credithours" min="1" max="12" required>
+      <button>Create Course</button>
+    </form>
+  </div>
+
+  <!-- Nav -->
+  <%- include('./partials/nav.ejs') %>
+
+  <script src="js.js"></script>
+</body>
+
+</html>

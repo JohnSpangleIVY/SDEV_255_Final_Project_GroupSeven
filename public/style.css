@@ -72,3 +72,9 @@ h2 {
    height: 100%;
    width: 100%;
 }
+
+/* Form - can be changed later */
+.createcourse input, textarea, button {
+  display: block;
+  color: black;
+}

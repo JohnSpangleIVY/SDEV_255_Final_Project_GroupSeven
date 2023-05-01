@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head -->
+<%- include('./partials/head.ejs') %>
+
+<body>
+  <br>
+  <br>
+  <br>
+  <h1>All Courses</h1>
+  <p>Under construction... please mind our dust!</p>
+
+  <h2>All Courses Currently Offered</h2>
+  <!-- JS for handling the list of all classes -->
+  <% if (courses.length > 0) { %>
+    <% courses.forEach(course => { %>
+      <a class="single" href="/courses/<%= course._id %>">
+        <p class="coursename"><b><%= course.coursename %></b></p>
+        <!-- <p class="description"><%= course.description %></p> -->
+      </a>
+    <% }) %>
+  <% } else { %>
+    <h3>No courses are available at this time.<h3>
+  <% } %>
+
+  <!-- Nav -->
+  <%- include('./partials/nav.ejs') %>
+
+  <script src="/js.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head -->
+<%- include('./partials/head.ejs') %>
+
+<body>
+  <br>
+  <br>
+  <br>
+  <h1><%= course.coursename %> - Course Information</h1>
+  <p>Under construction... please mind our dust!</p>
+  <br>
+  <h3>Course Description</h3>
+  <p><%= course.description %></p>
+  <br>
+  <p><b>Subject Area: </b><%= course.subjectarea %></p>
+  <p><b>Credit Hours: </b><%= course.credithours %></p>
+
+  <!-- Nav -->
+  <%- include('./partials/nav.ejs') %>
+
+  <!-- For some reason, the script causes loading issues with this page
+  <script src="js.js"></script>
+  -->
+</body>
+
+</html>
