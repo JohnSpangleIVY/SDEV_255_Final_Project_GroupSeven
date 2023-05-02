@@ -13,12 +13,28 @@
   <p><%= course.description %></p>
   <p class="m-t-2"><b>Subject Area: </b><%= course.subjectarea %></p>
   <p><b>Credit Hours: </b><%= course.credithours %></p>
+
   <p class="m-t-2">Edit/Update Course functionality coming soon!</p>
   <div class="btnContainer">
     <button id="allBtns" class="edit" data-doc="<%= course._id %>">Edit "<%= course.coursename %>"</button>
     <button id="allBtns" class="delete" data-doc="<%= course._id %>">Delete "<%= course.coursename %>"</button>
   </div>
 </div>
+
+
+  <br>
+  <p>Edit/Update Course functionality coming soon!</p>
+  <a class="edit" data-doc="<%= course._id %>">Edit "<%= course.coursename %>"</a>
+  <!-- obsolete... maybe?
+  <button class="edit" data-doc="<%= course._id %>">Edit "<%= course.coursename %>"</button>
+
+  <form>
+    <input type="button" onclick="window.location.href='/course-edit';" name="editcourseLinkBtn" class="editcourseLinkBtn">
+  </form>
+  -->
+  <br>
+  <button class="delete" data-doc="<%= course._id %>">Delete "<%= course.coursename %>"</button>
+
 
   <!-- Nav -->
   <%- include('./partials/nav.ejs') %>

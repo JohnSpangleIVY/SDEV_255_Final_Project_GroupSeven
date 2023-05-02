@@ -17,32 +17,30 @@
   <p><b>Subject Area: </b><%= course.subjectarea %></p>
   <p><b>Credit Hours: </b><%= course.credithours %></p>
 
+  <br>
+  <br>
   <h2>Your Edit:</h2>
-  <p>Coming soon</p>
-
-  <button class="delete" data-doc="<%= course._id %>">Delete "<%= course.coursename %>"</button>
+  <p>Update the values that you would like to change, and click "Edit Course" when you are finished.</p>
+  <p><i>Functionality is a work-in-progress!</i></p>
+  <div class="editcourse form">
+    <form action="/courses" method="PUT">
+      <label for="coursename">Course Name: </label>
+      <input type="text" id="coursename" name="coursename">
+      <label for="description">Description: </label>
+      <textarea id="description" name="description"></textarea>
+      <label for="subjectarea">Subject Area: </label>
+      <input type="text" id="subjectarea" name="subjectarea">
+      <label for="credithours">Credit Hours: </label>
+      <input type="number" id="credithours" name="credithours" min="1" max="12">
+      <button>Edit Course</button>
+    </form>
+  </div>
 
   <!-- Nav -->
   <%- include('./partials/nav.ejs') %>
 
   <script src="js.js"></script>
-  <script>
-    // Client-side JS for Handling DELETE of Individual/Selected Course
-    const deleteButton = document.querySelector('button.delete')'
 
-    deleteButton.addEventListener('click', (e) => {
-      const endpoint = '/courses/${deleteButton.dataset.doc}';
-
-      fetch(endpoint, {
-        method: 'DELETE'
-      })
-      .then((response) => response.json())
-      .then((data) => window.location.href = data.redirect)
-      .catch((err) => {
-        console.log(err);
-      });
-    })
-  </script>
 </body>
 
 </html>
