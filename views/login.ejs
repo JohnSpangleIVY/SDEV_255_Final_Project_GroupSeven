@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+<link rel="stylesheet" href="style.css">
 
 <!-- Head -->
 <%- include('./partials/head.ejs') %>
 
 <body>
-  <br>
-  <br>
-  <br>
-  <h1>Login</h1>
-  <p>Under construction... please mind our dust!</p>
+  <div class="cardContainer">
 
-  <a href="/courses" class="studentloginLinkBtn">Student Login</a>
-  <a href="/courses" class="teacherloginLinkBtn">Teacher Login</a>
+    <h1>LOGIN</h1>
+    <p>Select a Login</p>
+    <div class="btnContainer">
+      <a href="/courses" id="allBtns" class="studentloginLinkBtn">Student Login</a>
+      <a href="/courses" id="allBtns" class="teacherloginLinkBtn">Teacher Login</a>
+    </div>
+  </div>
 
   <!-- Nav -->
   <%- include('./partials/nav.ejs') %>
