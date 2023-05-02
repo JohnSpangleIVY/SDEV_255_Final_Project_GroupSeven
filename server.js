@@ -82,10 +82,22 @@ app.delete('/courses/:id', (req, res) => {
     });
 });
 
-// Edit or Delete a Course page
+// Edit a Course page
 app.get('/course-edit', (req, res) => {
   res.render('course-edit', {title: 'Edit a Course'});
 })
+
+// Edit Individual/Selected Course :: GET  -  route
+app.get('/courses/:id', (req, res) => {
+  const id = req.params.id;
+  Courses.findById(id)
+    .then(result => {
+      res.render('course-edit', {course: result, title: 'Edit Course Information'});
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 
 // Create a course :: POST  -  route
 app.post('/courses', (req, res) => {
