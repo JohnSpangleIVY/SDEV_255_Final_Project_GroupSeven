@@ -4,31 +4,41 @@
 <!-- Head -->
 <%- include('./partials/head.ejs') %>
 
-<body>
-  <br>
-  <br>
-  <br>
-  <h1>Create a Course</h1>
-  <p>Under construction... please mind our dust!</p>
+  <body>
+    <div class="cardContainer">
 
-  <div class="createcourse form">
-    <form action="/courses" method="POST">
-      <label for="coursename">Course Name: </label>
-      <input type="text" id="coursename" name="coursename" required>
-      <label for="description">Description: </label>
-      <textarea id="description" name="description" required></textarea>
-      <label for="subjectarea">Subject Area: </label>
-      <input type="text" id="subjectarea" name="subjectarea" required>
-      <label for="credithours">Credit Hours: </label>
-      <input type="number" id="credithours" name="credithours" min="1" max="12" required>
-      <button>Create Course</button>
-    </form>
-  </div>
+      <h1>Create a Course</h1>
+      <p>Under construction... please mind our dust!</p>
 
-  <!-- Nav -->
-  <%- include('./partials/nav.ejs') %>
+      <div class="createcourse form">
+        <form action="/courses" method="POST">
+          <div class="inputGroup">
+            <label id="labels" for="coursename">Course Name: </label>
+            <input type="text" id="coursename" name="coursename" required>
+          </div>
+          <div class="inputGroup">
+            <label id="labels" for="description">Description: </label>
+            <textarea id="description" name="description" required></textarea>
+          </div>
+          <div class="inputGroup">
+            <label id="labels" for="subjectarea">Subject Area: </label>
+            <input type="text" id="subjectarea" name="subjectarea" required>
+          </div>
+          <div class="inputGroup">
+            <label id="labels" for="credithours">Credit Hours: </label>
+            <input type="number" id="credithours" name="credithours" min="1" max="12" required>
+          </div>
+          <div class="btnContainer margin-none ">
+            <button id="allBtns">Create Course</button>
+          </div>
+        </form>
+      </div>
+    </div>
 
-  <script src="js.js"></script>
-</body>
+    <!-- Nav -->
+    <%- include('./partials/nav.ejs') %>
+
+      <script src="js.js"></script>
+  </body>
 
 </html>
