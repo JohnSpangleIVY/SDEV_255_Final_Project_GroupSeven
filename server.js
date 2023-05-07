@@ -7,6 +7,7 @@ const mongoose = require('mongoose'); // used for database-related things
 const Courses = require('./models/courses');
 const Students = require('./models/students');
 const Teachers = require('./models/teachers');
+const courseRoutes = require('./routes/courseRoutes');
 
 // Express app
 const app = express();
@@ -36,89 +37,16 @@ app.get('/', (req, res) => {
   res.render('index', {title: 'Welcome'});
 });
 
+
 // Login page
 app.get('/login', (req, res) => {
   res.render('login', {title: 'Login'});
 });
 
-// Course-related routes
-// All Courses page
-app.get('/courses', (req, res) => {
-  Courses.find()
-    .then((result) => {
-      res.render('courses', {title: 'All Courses', courses: result})
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
 
-// Create a Course page
-app.get('/course-create', (req, res) => {
-  res.render('course-create', {title: 'Create a Course'});
-})
+// Course routes
+app.use(courseRoutes);
 
-// Individual/Selected Course :: GET  -  route
-app.get('/courses/:id', (req, res) => {
-  const id = req.params.id;
-  Courses.findById(id)
-    .then(result => {
-      res.render('course-info', {course: result, title: 'Course Information'});
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
-
-// Delete an Individual/Selected Course :: DELETE  -  route
-app.delete('/courses/:id', (req, res) => {
-  const id = req.params.id;
-  Courses.findByIdAndDelete(id)
-    .then(result => {
-      res.json({redirect: '/courses'})
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
-
-// Edit a Course page
-app.get('/course-edit', (req, res) => {
-  res.render('course-edit', {title: 'Edit a Course'});
-})
-
-// Edit Individual/Selected Course :: GET  -  route
-app.get('/courses/:id', (req, res) => {
-  const id = req.params.id;
-  Courses.findById(id)
-    .then(result => {
-      res.render('course-edit', {course: result, title: 'Edit Course Information'});
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
-
-// Create a course :: POST  -  route
-app.post('/courses', (req, res) => {
-  const course = new Courses(req.body);
-  course.save()
-    .then((result) => {
-      res.redirect('/courses')
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
-
-/* may or may not need this anymore
-// Individual-Selected Course page
-app.get('/course-info', (req, res) => {
-  res.render('course-info', {title: 'Course Information'});
-});
-*/
-
-// end of course-related routes
 
 // 404 page - if 404, set status to 404
 app.get('/error404', (req, res) => {
