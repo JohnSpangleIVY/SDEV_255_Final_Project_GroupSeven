@@ -9,17 +9,20 @@
 
     <h1>COURSE</h1>
     <h2><%= course.coursename %></h2>
-  <h2>Course Description</h2>
-  <p><%= course.description %></p>
-  <p class="m-t-2"><b>Subject Area: </b><%= course.subjectarea %></p>
-  <p><b>Credit Hours: </b><%= course.credithours %></p>
+    <br>
+    <h2>Course Description</h2>
+    <p><%= course.description %></p>
+    <p class="m-t-2"><b>Subject Area: </b><%= course.subjectarea %></p>
+    <p><b>Credit Hours: </b><%= course.credithours %></p>
 
-  <p class="m-t-2">Edit/Update Course functionality coming soon!</p>
-  <div class="btnContainer">
-    <button id="allBtns" class="edit" data-doc="<%= course._id %>">Edit "<%= course.coursename %>"</button>
-    <button id="allBtns" class="delete" data-doc="<%= course._id %>">Delete "<%= course.coursename %>"</button>
+    <% if (user.role == 'teacher') { %>
+      <p class="m-t-2">Edit/Update Course functionality coming soon!</p>
+      <div class="btnContainer">
+        <button id="allBtns" class="edit" data-doc="<%= course._id %>">Edit "<%= course.coursename %>"</button>
+        <button id="allBtns" class="delete" data-doc="<%= course._id %>">Delete "<%= course.coursename %>"</button>
+      </div>
+    <% } %>
   </div>
-</div>
 
   <!-- Nav -->
   <%- include('../partials/nav.ejs') %>
@@ -46,6 +49,7 @@
         }
         prevScrollPos = currentScrollPos
     }
+
     // Client-side JS for Handling DELETE of Individual/Selected Course
     const deleteButton = document.querySelector('button.delete');
 

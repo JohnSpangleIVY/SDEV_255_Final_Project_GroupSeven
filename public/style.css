@@ -157,6 +157,6 @@ body .indexContainer {
 
 
 /* --- Error Messages from Server for Forms (login and signup) ---*/
-.email.error.message, .password.error.message {
+.email.error.message, .password.error.message, .role.error.message {
   color: #fab8b8;
 }

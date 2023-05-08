@@ -19,7 +19,8 @@ const userSchema = new Schema ({
     minlength: [10, 'Your password needs to be at least 10 characters in length.']
   },
   role: {
-    type: String
+    type: String,
+    required: [true, 'Please select if you are a student or a teacher.']
   },
   schedule: {
   },
@@ -35,5 +36,20 @@ userSchema.pre('save', async function (next) {
   next();
 })
 
+// Static method to login the user
+userSchema.statics.login = async function (email, password, role) {
+  const user = await this.findOne({email});
+  if (user) {
+    const auth = await bcrypt.compare(password, user.password);
+    if (auth) {
+      return user;
+    }
+    throw Error('Incorrect Password')
+  }
+  throw Error('Incorrect Email');
+}
+
+
+// Export
 const User = mongoose.model('user', userSchema);
 module.exports = User;

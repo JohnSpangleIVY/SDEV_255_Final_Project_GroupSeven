@@ -8,8 +8,12 @@
     <div class="cardContainer">
 
       <h1>COURSE SELECTION</h1>
-      <p class="m-b-2">Teacher May Create a New Couse</p>
-      <a href="/course-create" id=allBtns class="createcourseLinkBtn m-t-3">Create New Course</a>
+      <br>
+      <% if (user.role == 'teacher') { %>
+        <a href="/course-create" id=allBtns class="createcourseLinkBtn m-t-3">Create New Course</a>
+      <% } else { %>
+        <a href="/shopping-cart" id=allBtns class="createcourseLinkBtn m-t-3">Shopping Cart</a>
+      <% } %>
       <h2 class="m-t-3">All Courses Currently Offered</h2>
       <!-- JS for handling the list of all classes -->
       <div class="courseContainer">
@@ -17,15 +21,13 @@
         <% if (courses.length> 0) { %>
           <% courses.forEach(course=> { %>
             <a class="single noDecoration" id="" href="/courses/<%= course._id %>">
-              <p id="allBtns" class="coursename"><b>
-                  <%= course.coursename %>
-                </b></p>
+              <p id="allBtns" class="coursename"><b><%= course.coursename %></b></p>
               <!-- <p class="description"><%= course.description %></p> -->
             </a>
-            <% }) %>
-              <% } else { %>
-                <h3>No courses are available at this time.<h3>
-                    <% } %>
+          <% }) %>
+        <% } else { %>
+            <h3>No courses are available at this time.<h3>
+        <% } %>
 
       </div>
     </div>

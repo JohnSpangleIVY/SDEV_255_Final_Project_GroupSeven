@@ -8,9 +8,10 @@ const cookieParser = require('cookie-parser'); // used for parsing cookie data
 // Required models
 const Courses = require('./models/courses');
 const User = require('./models/User');
-// Required route files
+// Required route files and Authorization
 const courseRoutes = require('./routes/courseRoutes');
 const authRoutes = require('./routes/authRoutes');
+const {checkUser} = require('./middleware/authMiddleware');
 
 
 // Express app
@@ -38,6 +39,10 @@ app.use(cookieParser()); // allows us to access a cookie method on a response ob
 
 //
 // Routes - work in progress
+
+// Apply checkUser to all routes
+app.get('*', checkUser);
+
 // Welcome page
 app.get('/', (req, res) => {
   res.render('index', {title: 'Welcome'});
