@@ -2,6 +2,9 @@
 const express = require('express');
 const courseController = require('../controllers/courseController');
 
+// Required routes
+const courseRoutes = require('../routes/courseRoutes');
+
 // Express router
 const router = express.Router();
 

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head -->
+<%- include('./partials/head.ejs') %>
+
+<body>
+  <div class="cardContainer">
+    <h1>Account Registration</h1>
+    <br>
+
+    <div class="createcourse form">
+      <form>
+        <div class="inputGroup">
+          <label for="email">Email:</label>
+          <input type="text" name="email" required>
+          <div class="errormessage"></div>
+        </div>
+        <div class="inputGroup">
+          <label for="password">Password:</label>
+          <input type="password" name="password" required>
+          <div class="errormessage"></div>
+        </div>
+        <h3>Are you a student or a teacher?</h3>
+        <div class="inputGroup">
+          <input type="radio" name="role" value="student" required>
+          <label for="studentradio">Student</label>
+          <input type="radio" name="role" value="teacher">
+          <label for="teacherradio">Teacher</label>
+        </div>
+        <div class="btnContainer margin-none ">
+          <button id="allBtns">Sign Up</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+
+  <!-- Nav -->
+  <%- include('./partials/nav.ejs') %>
+
+  <script src="js.js"></script>
+
+  <script>
+    const form = document.querySelector('form');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault()
+
+      // Get the values from the sign up form
+      const email = form.email.value;
+      const password = form.password.value;
+      const role = form.role.value;
+
+      console.log(email, password, role);
+    })
+  </script>
+
+</body>
+
+</html>

@@ -8,18 +8,44 @@
 <body>
   <div class="cardContainer">
 
-    <h1>LOGIN</h1>
-    <p>Select a Login</p>
-    <div class="btnContainer">
-      <a href="/courses" id="allBtns" class="studentloginLinkBtn">Student Login</a>
-      <a href="/courses" id="allBtns" class="teacherloginLinkBtn">Teacher Login</a>
-    </div>
+    <h1>Login</h1>
+    <br>
+    <form>
+      <div class="inputGroup">
+        <label for="email">Email:</label>
+        <input type="text" name="email" required>
+        <div class="errormessage"></div>
+      </div>
+      <div class="inputGroup">
+        <label for="password">Password:</label>
+        <input type="password" name="password" required>
+        <div class="errormessage"></div>
+      </div>
+      <div class="btnContainer margin-none ">
+        <button id="allBtns">Login</button>
+      </div>
+    </form>
   </div>
 
   <!-- Nav -->
   <%- include('./partials/nav.ejs') %>
 
   <script src="js.js"></script>
+
+  <script>
+    const form = document.querySelector('form');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault()
+
+      // Get the values from the login form
+      const email = form.email.value;
+      const password = form.password.value;
+
+      console.log(email, password);
+    })
+  </script>
+
 </body>
 
 </html>

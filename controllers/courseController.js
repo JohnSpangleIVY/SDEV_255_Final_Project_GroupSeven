@@ -52,6 +52,7 @@ const course_delete = (req, res) => {
 }
 
 
+// Export functions
 module.exports = {
   course_all,
   course_info,
