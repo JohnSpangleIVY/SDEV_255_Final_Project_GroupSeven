@@ -10,24 +10,28 @@
     <br>
 
     <div class="createcourse form">
-      <form>
+      <form id="signup-form">
         <div class="inputGroup">
           <label for="email">Email:</label>
           <input type="text" name="email" required>
-          <div class="errormessage"></div>
+          <div class="email error message"></div>
         </div>
+        <br>
         <div class="inputGroup">
           <label for="password">Password:</label>
           <input type="password" name="password" required>
-          <div class="errormessage"></div>
+          <div class="password error message"></div>
         </div>
+        <br>
         <h3>Are you a student or a teacher?</h3>
         <div class="inputGroup">
-          <input type="radio" name="role" value="student" required>
-          <label for="studentradio">Student</label>
-          <input type="radio" name="role" value="teacher">
-          <label for="teacherradio">Teacher</label>
+          <select name="role" form="signup-form" class="rolemenu">
+            <option value="student">Student</option>
+            <option value="teacher">Teacher</option>
+          </select>
         </div>
+        <br>
+        <br>
         <div class="btnContainer margin-none ">
           <button id="allBtns">Sign Up</button>
         </div>
@@ -39,12 +43,21 @@
   <!-- Nav -->
   <%- include('./partials/nav.ejs') %>
 
+  <!-- Footer -->
+  <%- include('./partials/footer'); -%>
+
   <script src="js.js"></script>
 
   <script>
-    const form = document.querySelector('form');
+    const form = document.getElementById('signup-form');
+    const emailError = document.querySelector('.email.error.message');
+    const passwordError = document.querySelector('.password.error.message');
 
-    form.addEventListener('submit', (e) => {
+    // Reset error fields
+    emailError.textContent = '';
+    passwordError.textContent = '';
+
+    form.addEventListener('submit', async (e) => {
       e.preventDefault()
 
       // Get the values from the sign up form
@@ -52,7 +65,21 @@
       const password = form.password.value;
       const role = form.role.value;
 
-      console.log(email, password, role);
+      try {
+        const res = await fetch('signup', {
+          method: 'POST',
+          body: JSON.stringify({email, password, role}),
+          headers: {'Content-Type': 'application/json'}
+        })
+        const data = await res.json();
+        console.log(data);
+        if (data.errors) {
+          emailError.textContent = data.errors.email;
+          passwordError.textContent = data.errors.password;
+        }
+      } catch (e) {
+        console.log(err);
+      }
     })
   </script>
 
