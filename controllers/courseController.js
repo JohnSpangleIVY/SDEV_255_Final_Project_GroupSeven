@@ -2,7 +2,7 @@
 const Courses = require('../models/courses');
 
 
-// List of functions: course_all , course_info , course_create_get , course_create_post , course_delete
+// List of functions: course_all , course_info , course_create_get , course_create_post , course_edit_get , course_edit_post , course_delete
 
 const course_all = (req, res) => {
   Courses.find()
@@ -40,6 +40,34 @@ const course_create_post = (req, res) => {
     });
 }
 
+const course_edit_get = (req, res) => {
+  const id = req.params.id;
+  Courses.findById(id)
+    .then(result => {
+      res.render('courses/course-edit', {course: result, title: 'Edit Course Information'});
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+const course_edit_post = async (req, res) => {
+  const id = req.body.id;
+  await Courses.updateOne(id, {$set:
+      {
+        "coursename": req.body.coursename,
+        "description": req.body.description,
+        "subjectarea": req.body.subjectarea,
+        "credithours": req.body.credithours
+      }})
+    .then(result => {
+      res.redirect('/course-info/' + id)
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
 const course_delete = (req, res) => {
   const id = req.params.id;
   Courses.findByIdAndDelete(id)
@@ -62,6 +90,8 @@ module.exports = {
   course_info,
   course_create_get,
   course_create_post,
+  course_edit_get,
+  course_edit_post,
   course_delete,
   shopping_cart_get
 }

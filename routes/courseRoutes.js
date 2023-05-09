@@ -11,11 +11,14 @@ const router = express.Router();
 
 
 // Course-related routes
-// All Courses page
+// All Courses page :: GET
 router.get('/courses', requireAuth, courseController.course_all);
 
+// Edit Individual/Selected Course :: GET
+router.get('/course-edit/:id', requireAuth, courseController.course_edit_get);
+
 // Create a Course page :: GET
-router.get('/course-create', requireAuth, courseController.course_create_get)
+router.get('/course-create', requireAuth, courseController.course_create_get);
 
 // Individual/Selected Course :: GET
 router.get('/courses/:id', requireAuth, courseController.course_info);
@@ -23,10 +26,18 @@ router.get('/courses/:id', requireAuth, courseController.course_info);
 // Individual/Selected Course :: DELETE
 router.delete('/courses/:id', requireAuth, courseController.course_delete);
 
-// Create a course :: POST  -  route
+// Edit Individual/Selected Course :: PUT
+router.post('/course-edit/', requireAuth, courseController.course_edit_post);
+
+// Create a Course :: POST
 router.post('/courses', requireAuth, courseController.course_create_post);
 
-// Shopping Cart (for students)
+
+
+// Edit Individual/Selected Course :: POST
+// router.post('/course-edit', requireAuth, courseController.course_edit_post);
+
+// Shopping Cart (for students) :: GET
 router.get('/shopping-cart', requireAuth, courseController.shopping_cart_get);
 
 /* Possibly scrap - need to decided later ... edit functionality may be added to the course-info page instead

@@ -8,38 +8,69 @@
   <br>
   <br>
   <br>
-  <h1>Edit "<%= course.coursename %>"</h1>
-  <p>Under construction... please mind our dust!</p>
+  <div class="cardContainer">
+    <h1>Edit "<%= course.coursename %>"</h1>
 
-  <h2>Current Course Information</h2>
-  <p><b>Course Name: </b><%= course.coursename %>"</p>
-  <p><b>Description: </b><%= course.description %></p>
-  <p><b>Subject Area: </b><%= course.subjectarea %></p>
-  <p><b>Credit Hours: </b><%= course.credithours %></p>
+    <h2>Current Course Information</h2>
+    <p><b>Course Name: </b><%= course.coursename %></p>
+    <p><b>Description: </b><%= course.description %></p>
+    <p><b>Subject Area: </b><%= course.subjectarea %></p>
+    <p><b>Credit Hours: </b><%= course.credithours %></p>
 
-  <br>
-  <br>
-  <h2>Your Edit:</h2>
-  <p>Update the values that you would like to change, and click "Edit Course" when you are finished.</p>
-  <p><i>Functionality is a work-in-progress!</i></p>
-  <div class="editcourse form">
-    <form action="/courses" method="PUT">
-      <label for="coursename">Course Name: </label>
-      <input type="text" id="coursename" name="coursename">
-      <label for="description">Description: </label>
-      <textarea id="description" name="description"></textarea>
-      <label for="subjectarea">Subject Area: </label>
-      <input type="text" id="subjectarea" name="subjectarea">
-      <label for="credithours">Credit Hours: </label>
-      <input type="number" id="credithours" name="credithours" min="1" max="12">
-      <button>Edit Course</button>
-    </form>
+    <br>
+    <br>
+    <h2>Your Edit:</h2>
+    <p><i>Functionality is a work-in-progress!</i></p>
+    <div class="createcourse form">
+      <form action="/courses" method="POST">
+        <div class="inputGroup">
+          <label for="coursename">Course Name: </label>
+          <input type="text" id="coursename" name="coursename">
+        </div>
+        <div class="inputGroup">
+          <label for="description">Description: </label>
+          <textarea id="description" name="description"></textarea>
+        </div>
+        <div class="inputGroup">
+          <label for="subjectarea">Subject Area: </label>
+          <input type="text" id="subjectarea" name="subjectarea">
+        </div>
+        <div class="inputGroup">
+          <label for="credithours">Credit Hours: </label>
+          <input type="number" id="credithours" name="credithours" min="1" max="12">
+        </div>
+        <div class="btnContainer margin-none ">
+          <button id="allBtns" class="update" type="submit">Update Course</button>
+        </div>
+      </form>
+    </div>
   </div>
 
   <!-- Nav -->
   <%- include('../partials/nav.ejs') %>
 
+  <!-- Footer -->
+  <%- include('../partials/footer'); %>
+
+  <!-- For some reason, the script causes loading issues with this page
   <script src="js.js"></script>
+  So, the script has been attached to the HTML/EJS instead
+  -->
+  <script>
+    // for nav
+    var app = document.querySelector('.app');
+    var prevScrollPos = window.pageYOffset;
+
+    window.onscroll = function(){
+        var currentScrollPos = window.pageYOffset;
+        if (prevScrollPos > currentScrollPos) {
+            app.style.top = "0";
+        } else {
+            app.style.top = "-10rem";
+        }
+        prevScrollPos = currentScrollPos;
+    }
+  </script>
 
 </body>
 

@@ -16,12 +16,17 @@
     <p><b>Credit Hours: </b><%= course.credithours %></p>
 
     <% if (user.role == 'teacher') { %>
-      <p class="m-t-2">Edit/Update Course functionality coming soon!</p>
+      <p class="m-t-2">Edit/Update Course functionality in development!</p>
       <div class="btnContainer">
-        <button id="allBtns" class="edit" data-doc="<%= course._id %>">Edit "<%= course.coursename %>"</button>
+        <!-- <button id="allBtns" class="edit" data-doc="<%= course._id %>">Edit "<%= course.coursename %>"</button> -->
+        <a class="single noDecoration" id="" href="/course-edit/<%= course._id %>">
+          <p id="allBtns" class="edit">Edit "<%= course.coursename %>"</p>
+          <!-- <p class="description"><%= course.description %></p> -->
+        </a>
         <button id="allBtns" class="delete" data-doc="<%= course._id %>">Delete "<%= course.coursename %>"</button>
       </div>
     <% } %>
+    <div class="editsection"></div>
   </div>
 
   <!-- Nav -->
@@ -37,17 +42,17 @@
 
   <script>
     // for nav
-    var app = document.querySelector('.app')
-    var prevScrollPos = window.pageYOffset
+    var app = document.querySelector('.app');
+    var prevScrollPos = window.pageYOffset;
 
     window.onscroll = function(){
-        var currentScrollPos = window.pageYOffset
+        var currentScrollPos = window.pageYOffset;
         if (prevScrollPos > currentScrollPos) {
-            app.style.top = "0"
+            app.style.top = "0";
         } else {
-            app.style.top = "-10rem"
+            app.style.top = "-10rem";
         }
-        prevScrollPos = currentScrollPos
+        prevScrollPos = currentScrollPos;
     }
 
     // Client-side JS for Handling DELETE of Individual/Selected Course
@@ -64,7 +69,8 @@
       .catch((err) => {
         console.log(err);
       });
-    })
+    });
+
   </script>
 </body>
 
