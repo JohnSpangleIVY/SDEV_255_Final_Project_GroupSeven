@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head -->
+<%- include('../partials/head.ejs') %>
+
+  <body>
+    <div class="cardContainer">
+
+      <h1>SEARCH FOR A COURSE</h1>
+      <div class="inputGroup">
+        <input type="text" name="searchbar" id="searchbar" placeholder="Search for a course...">
+      </div>
+      <h2>Search Results:</h2>
+      <div class="searchresults">
+
+      </div>
+    </div>
+
+
+    <!-- Nav -->
+    <%- include('../partials/nav.ejs') %>
+
+    <!-- Footer -->
+    <%- include('../partials/footer'); -%>
+
+    <!-- For some reason, the script causes loading issues with this page
+    <script src="js.js"></script>
+    So, the script has been attached to the HTML/EJS instead
+    -->
+
+    <script>
+      // for nav
+      var app = document.querySelector('.app');
+      var prevScrollPos = window.pageYOffset;
+
+      window.onscroll = function() {
+          var currentScrollPos = window.pageYOffset;
+          if (prevScrollPos > currentScrollPos) {
+              app.style.top = "0";
+          } else {
+              app.style.top = "-10rem";
+          }
+          prevScrollPos = currentScrollPos;
+      }
+
+      // Listen for input on the search text input box aka search bar
+      // Send back search results to the "searchresults" div
+      document.getElementById("searchbar").onchange = function() {
+        var searchbarData = document.getElementById("searchbar").value;
+        var query = {$text: {$search: searchbarData}};
+        var searchResultsDiv = document.querySelector("searchresults");
+
+        // Reset search results
+        searchResultsDiv = "";
+
+        // Return the title
+        const projection = {
+          _id: 0,
+          title: 1
+        }
+
+        // Find documents
+        const results = courses.find(query).project(projection);
+
+        // Display results in the "searchresults" div
+        if (results > 0) {
+          results.forEach(results => {
+            var link = document.createElement("a");
+            var courseLink = document.createText(course.name);
+            a.appendChild(courseLink);
+            a.title = course.name;
+            a.href = "/course-info" + course._id;
+            document.body.appendChild(a);
+          })
+        }
+      }
+    </script>
+
+
+
+  </body>
+
+</html>

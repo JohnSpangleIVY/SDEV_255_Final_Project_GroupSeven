@@ -21,7 +21,6 @@
         <!-- <button id="allBtns" class="edit" data-doc="<%= course._id %>">Edit "<%= course.coursename %>"</button> -->
         <a class="single noDecoration" id="" href="/course-edit/<%= course._id %>">
           <p id="allBtns" class="edit">Edit "<%= course.coursename %>"</p>
-          <!-- <p class="description"><%= course.description %></p> -->
         </a>
         <button id="allBtns" class="delete" data-doc="<%= course._id %>">Delete "<%= course.coursename %>"</button>
       </div>
@@ -45,7 +44,7 @@
     var app = document.querySelector('.app');
     var prevScrollPos = window.pageYOffset;
 
-    window.onscroll = function(){
+    window.onscroll = function() {
         var currentScrollPos = window.pageYOffset;
         if (prevScrollPos > currentScrollPos) {
             app.style.top = "0";

@@ -14,6 +14,11 @@
       <% } else { %>
         <a href="/shopping-cart" id=allBtns class="createcourseLinkBtn m-t-3">Shopping Cart</a>
       <% } %>
+      <div class="btnContainer">
+        <a class="single noDecoration" id="" href="/courses-search/">
+          <p id="allBtns" class="searchbuttonlink">Search...</p>
+        </a>
+      </div>
       <h2 class="m-t-3">All Courses Currently Offered</h2>
       <!-- JS for handling the list of all classes -->
       <div class="courseContainer">
@@ -38,7 +43,10 @@
     <!-- Footer -->
     <%- include('../partials/footer'); -%>
 
-      <script src="/js.js"></script>
+    <script src="/js.js"></script>
+
+
+
   </body>
 
 </html>
