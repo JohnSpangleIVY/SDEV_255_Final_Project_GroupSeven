@@ -2,7 +2,7 @@
 const Courses = require('../models/courses');
 
 
-// List of functions: course_all , course_info , course_create_get , course_create_post , course_edit_get , course_edit_post , course_delete
+// List of functions: course_all , course_info , course_create_get , course_create_post , course_edit_get , course_edit_post , course_search , course_delete , shopping_cart_get
 
 const course_all = (req, res) => {
   Courses.find()
@@ -68,6 +68,16 @@ const course_edit_post = async (req, res) => {
     });
 }
 
+const course_search = (req, res) => {
+  Courses.find()
+    .then((result) => {
+      res.render('courses/courses-search', {title: 'Search for a Course', courses: result})
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+}
+
 const course_delete = (req, res) => {
   const id = req.params.id;
   Courses.findByIdAndDelete(id)
@@ -92,6 +102,7 @@ module.exports = {
   course_create_post,
   course_edit_get,
   course_edit_post,
+  course_search,
   course_delete,
   shopping_cart_get
 }
