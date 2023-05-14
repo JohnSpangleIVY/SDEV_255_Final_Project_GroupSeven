@@ -23,14 +23,14 @@ router.get('/course-create', requireAuth, courseController.course_create_get);
 // Individual/Selected Course :: GET
 router.get('/courses/:id', requireAuth, courseController.course_info);
 
-// Edit Individual/Selected Course :: PUT
-router.post('/course-edit/:id', requireAuth, courseController.course_edit_post);
-
 // Search for a Course :: GET
 router.get('/courses-search', requireAuth, courseController.course_search);
 
 // Individual/Selected Course :: DELETE
 router.delete('/courses/:id', requireAuth, courseController.course_delete);
+
+// Edit Individual/Selected Course :: PUT
+router.post('/course-edit/:id', requireAuth, courseController.course_edit_post);
 
 // Create a Course :: POST
 router.post('/courses', requireAuth, courseController.course_create_post);
