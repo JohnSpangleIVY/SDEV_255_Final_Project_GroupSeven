@@ -11,6 +11,7 @@ const User = require('./models/User');
 // Required route files and Authorization
 const courseRoutes = require('./routes/courseRoutes');
 const authRoutes = require('./routes/authRoutes');
+const userRoutes = require('./routes/userRoutes');
 const {checkUser} = require('./middleware/authMiddleware');
 
 
@@ -58,6 +59,9 @@ app.use(courseRoutes);
 
 // Authorization routes (signup, login, logout)
 app.use(authRoutes);
+
+// User routes (shopping cart)
+app.use(userRoutes);
 
 // 404 page - if 404, set status to 404
 app.get('/error404', (req, res) => {

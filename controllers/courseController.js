@@ -89,10 +89,6 @@ const course_delete = (req, res) => {
     });
 }
 
-const shopping_cart_get = (req, res) => {
-  res.render('courses/shopping-cart', {title: 'My Shopping Cart'});
-}
-
 
 // Export functions
 module.exports = {
@@ -103,6 +99,5 @@ module.exports = {
   course_edit_get,
   course_edit_post,
   course_search,
-  course_delete,
-  shopping_cart_get
+  course_delete
 }

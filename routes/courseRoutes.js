@@ -3,7 +3,8 @@ const express = require('express');
 const courseController = require('../controllers/courseController');
 
 // Required routes and Authorization
-const courseRoutes = require('../routes/courseRoutes');
+const authRoutes = require('../routes/authRoutes');
+const userRoutes = require('../routes/userRoutes');
 const {requireAuth} = require('../middleware/authMiddleware');
 
 // Express router
@@ -34,10 +35,8 @@ router.post('/course-edit/:id', requireAuth, courseController.course_edit_post);
 
 // Create a Course :: POST
 router.post('/courses', requireAuth, courseController.course_create_post);
-
-// Shopping Cart (for students) :: GET
-router.get('/shopping-cart', requireAuth, courseController.shopping_cart_get);
 // end of course-related routes
+
 
 // Export router
 module.exports = router;
