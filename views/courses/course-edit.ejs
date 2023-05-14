@@ -22,7 +22,7 @@
     <h2>Your Edit:</h2>
     <p><i>Functionality is a work-in-progress!</i></p>
     <div class="createcourse form">
-      <form action="/courses" method="POST">
+      <form action="/course-edit/<%= course.id %>" method="POST">
         <div class="inputGroup">
           <label for="coursename">Course Name: </label>
           <input type="text" id="coursename" name="coursename">

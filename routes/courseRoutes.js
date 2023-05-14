@@ -29,7 +29,7 @@ router.get('/courses-search', requireAuth, courseController.course_search);
 // Individual/Selected Course :: DELETE
 router.delete('/courses/:id', requireAuth, courseController.course_delete);
 
-// Edit Individual/Selected Course :: PUT
+// Edit Individual/Selected Course :: POST
 router.post('/course-edit/:id', requireAuth, courseController.course_edit_post);
 
 // Create a Course :: POST
