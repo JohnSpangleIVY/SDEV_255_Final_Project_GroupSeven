@@ -22,7 +22,7 @@
     <h2>Your Edit:</h2>
     <p><i>Functionality is a work-in-progress!</i></p>
     <div class="createcourse form">
-      <form action="/course-edit/<%= course.id %>" method="POST">
+      <form id="editcourse" action="/course-edit/<%= course.id %>" method="POST">
         <div class="inputGroup">
           <label for="coursename">Course Name: </label>
           <input type="text" id="coursename" name="coursename">
@@ -70,6 +70,35 @@
         }
         prevScrollPos = currentScrollPos;
     }
+
+    /* Edit course form handler */
+    // Get the form ID
+    const form = document.getElementById("editcourse");
+
+    // Main function for edit course form handler
+    form.addEventListener('submit', async (e) => {
+      // Prevent the form from submitting before verification
+      e.preventDefault();
+
+      /* Check to see which fields are populated */
+      /* Set the values for each empty field to their original values that were received from the database */
+      if (form.coursename.value === "") {
+        document.getElementById("coursename").value = "<%= course.coursename %>";
+      }
+      if (form.description.value === "") {
+        document.getElementById("description").value = "<%= course.description %>";
+      }
+      if (form.subjectarea.value === "") {
+        document.getElementById("subjectarea").value = "<%= course.subjectarea %>";
+      }
+      if (form.credithours.value === "") {
+        document.getElementById("credithours").value = "<%= course.credithours %>";
+      }
+
+      form.submit();
+    });
+
+
   </script>
 
 </body>
