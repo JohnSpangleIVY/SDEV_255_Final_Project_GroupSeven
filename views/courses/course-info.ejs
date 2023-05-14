@@ -16,7 +16,6 @@
     <p><b>Credit Hours: </b><%= course.credithours %></p>
 
     <% if (user.role == 'teacher') { %>
-      <p class="m-t-2">Edit/Update Course functionality in development!</p>
       <div class="btnContainer">
         <!-- <button id="allBtns" class="edit" data-doc="<%= course._id %>">Edit "<%= course.coursename %>"</button> -->
         <a class="single noDecoration" id="" href="/course-edit/<%= course._id %>">
