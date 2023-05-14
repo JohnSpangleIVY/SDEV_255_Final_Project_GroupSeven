@@ -17,6 +17,42 @@
       </div>
     </div>
 
+    <% if (courses) { %>
+      <script>
+        // Listen for input on the search text input box aka search bar
+        // Send back search results to the "searchresults" div
+        document.getElementById("searchbar").onchange = function() {
+          var searchbarData = document.getElementById("searchbar").value;
+          var query = {$text: {$search: searchbarData}};
+          var searchResultsDiv = document.querySelector("searchresults");
+
+          // Reset search results
+          searchResultsDiv = "";
+
+          // Return the title
+          const projection = {
+            _id: 0,
+            title: 1
+          }
+
+          // Find documents
+          const courses = [<%- courses %>];
+          const results = courses.find(query).project(projection);
+
+          // Display results in the "searchresults" div
+          if (results > 0) {
+            results.forEach(results => {
+              var link = document.createElement("a");
+              var courseLink = document.createText(course.name);
+              a.appendChild(courseLink);
+              a.title = course.name;
+              a.href = "/course-info" + course._id;
+              document.body.appendChild(a);
+            })
+          }
+        }
+      </script>
+    <% } %>
 
     <!-- Nav -->
     <%- include('../partials/nav.ejs') %>
@@ -43,41 +79,7 @@
           }
           prevScrollPos = currentScrollPos;
       }
-
-      // Listen for input on the search text input box aka search bar
-      // Send back search results to the "searchresults" div
-      document.getElementById("searchbar").onchange = function() {
-        var searchbarData = document.getElementById("searchbar").value;
-        var query = {$text: {$search: searchbarData}};
-        var searchResultsDiv = document.querySelector("searchresults");
-
-        // Reset search results
-        searchResultsDiv = "";
-
-        // Return the title
-        const projection = {
-          _id: 0,
-          title: 1
-        }
-
-        // Find documents
-        const results = courses.find(query).project(projection);
-
-        // Display results in the "searchresults" div
-        if (results > 0) {
-          results.forEach(results => {
-            var link = document.createElement("a");
-            var courseLink = document.createText(course.name);
-            a.appendChild(courseLink);
-            a.title = course.name;
-            a.href = "/course-info" + course._id;
-            document.body.appendChild(a);
-          })
-        }
-      }
     </script>
-
-
 
   </body>
 

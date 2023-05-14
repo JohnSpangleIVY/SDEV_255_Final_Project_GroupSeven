@@ -42,6 +42,7 @@ const course_create_post = (req, res) => {
 
 const course_edit_get = (req, res) => {
   const id = req.params.id;
+  console.log(id);
   Courses.findById(id)
     .then(result => {
       res.render('courses/course-edit', {course: result, title: 'Edit Course Information'});
@@ -52,8 +53,8 @@ const course_edit_get = (req, res) => {
 }
 
 const course_edit_post = async (req, res) => {
-  const id = req.body.id;
-  await Courses.updateOne(id, {$set:
+  // const courseId = req.params.id;
+  await Courses.updateOne({"_id": ObjectId(String(req.params.id))}, {$set:
       {
         "coursename": req.body.coursename,
         "description": req.body.description,
@@ -61,7 +62,8 @@ const course_edit_post = async (req, res) => {
         "credithours": req.body.credithours
       }})
     .then(result => {
-      res.redirect('/course-info/' + id)
+      //res.redirect('/courses/' + req.params.id)
+      res.render(result);
     })
     .catch((err) => {
       console.log(err);
